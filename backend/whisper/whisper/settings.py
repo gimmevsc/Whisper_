@@ -12,15 +12,20 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv()
+
+secret_key_env = os.getenv("SECRET_KEY")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-x0(qew+f-8=j1=)aj9of&@$k##3(x)sbc_aag+13h+twc3ter*'
+SECRET_KEY = secret_key_env
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,17 +46,16 @@ INSTALLED_APPS = [
     # 'django.contrib.sites',
     # 'Pillow',
     'rest_framework',
-    'register.apps.RegisterConfig',
-    'login.apps.LoginConfig',
-    'chat.apps.ChatConfig',
-    'reset_password.apps.ResetPasswordConfig',
-    'user_profile.apps.UserProfileConfig',
-    'corsheaders'
+    'register',
+    'login',
+    'chat',
+    'reset_password',
+    'user_profile',
+    'corsheaders',
 ]
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
-    'http://192.168.31.234:3000',
     'ws://localhost:8000'
 ]
 

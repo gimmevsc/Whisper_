@@ -7,17 +7,22 @@ from re import match
 from django.db.models.signals import pre_delete
 from django.utils import timezone
 from django.dispatch import receiver
-from django.contrib.auth.models import User 
+from django.contrib.auth.models import User
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
+sender_email_env = os.getenv('SENDER_EMAIL')
+sender_password_env = ' '.join(os.getenv('SENDER_PASSWORD').split(','))
 
 def generate_code():
     return str(str(randint(0,9))+str(randint(0,9))+str(randint(0,9))+str(randint(0,9))+str(randint(0,9))+str(randint(0,9)))
 
 
 def send_verification_code(email, code, email_goal, email_main):
-    sender_email = 'noreply.whispercode@gmail.com'
-    sender_password = 'jhbi pzln sxbo nozu'
+    sender_email = sender_email_env
+    sender_password = sender_password_env
     smtp_server = 'smtp.gmail.com'
     smtp_port = 587
     
