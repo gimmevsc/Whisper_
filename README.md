@@ -34,6 +34,12 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+#### Set Up Environment Variables
+Create a .env file in the project root by copying .env.example:
+```bash
+cp .env.example .env
+```
+
 #### Run migrations:
 ``` bash
 cd whisper
